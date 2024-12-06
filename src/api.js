@@ -195,13 +195,10 @@ app.delete("/postagem/apagar", async (req, res) => {
 app.post('/esqueci-senha', passwordResetController.requestPasswordReset);
 app.post('/resetar-senha', passwordResetController.verifyCodeAndResetPassword);
 
-// Configuração para servir o index.html do frontend para qualquer rota desconhecida
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', '..', 'Frontend', 'build', 'index.html'));
+app.all('*', (req, res) => {
+  res.status(404).json({
+    message: 'Rota não encontrada. Verifique o endpoint e tente novamente.'
+  });
 });
-// Inicializar o servidor
-// app.listen(PORT, () => {
-//     console.log(`Servidor rodando na porta ${PORT}`);
-// });
 
 module.exports=app;
