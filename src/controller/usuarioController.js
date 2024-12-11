@@ -267,7 +267,7 @@ exports.loginUsuario = async (req, res) => {
 
     console.log("senha do modal:"+md5(senha));
     //verifica a senha 
-    if (usuario.senha !== md5(senha) ) {
+    if (usuario.senha !== senha ) {
       return res.status(401).send({ message: 'Email ou senha incorretos' });
     }
 
