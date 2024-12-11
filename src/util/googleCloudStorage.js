@@ -6,7 +6,9 @@ const dbModel = require("../model/db");
 const { usuario } = require('../controller/usuarioController');
 
 // Configurações do Google Cloud Storage
-const storage = new Storage();
+const storage = new Storage({
+  credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON),
+});
 const bucketName = 'reppsi'; // Substitua pelo nome do seu bucket
 
 // Configurações do MongoDB
